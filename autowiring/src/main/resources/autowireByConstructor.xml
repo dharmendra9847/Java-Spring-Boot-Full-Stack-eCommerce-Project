@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="specificationByConstructor" class="com.spring.autowire.autowirebyconstructor.SpecificationByConstructor">
+        <property name="make" value="Toyota"/>
+        <property name="model" value="Corolla"/>
+    </bean>
+
+    <!-- Autowiring by Constructor -->
+    <bean id="myCar" class="com.spring.autowire.autowirebyconstructor.Car" autowire="constructor"/>
+
+</beans>
