@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="myDataProvider" class="com.spring.challenge.UserDatabaseProvider" />
+    <bean id="myNewDataProvider" class="com.spring.challenge.NewDatabaseProvider" />
+    <bean id="myWebServiceDataProvider" class="com.spring.challenge.WebServiceDataProvider" />
+
+    <!-- constructor injection here -->
+    <!-- bean-1 created -->
+    <bean id="userManagerDataProvider" class="com.spring.challenge.UserManager">
+        <constructor-arg ref="myDataProvider" />
+    </bean>
+
+    <!-- bean-2 created -->
+    <bean id="userManagerNewDataProvider" class="com.spring.challenge.UserManager">
+        <constructor-arg ref="myNewDataProvider"/>
+    </bean>
+
+    <!-- bean-3 created -->
+    <bean id="userManagerWebServiceDataProvider" class="com.spring.challenge.UserManager">
+        <constructor-arg ref="myWebServiceDataProvider"/>
+    </bean>
+</beans>
