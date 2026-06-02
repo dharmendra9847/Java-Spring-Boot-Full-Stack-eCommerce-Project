@@ -9,6 +9,6 @@ public class ComponentScanAnnotation {
 
         ApplicationContext context = new ClassPathXmlApplicationContext("componentScanDemo.xml");
         Employee employee = (Employee) context.getBean("employee");
-        System.out.println(employee.toString());
+        System.out.println(employee.displayEmployeeDetails());
     }
 }

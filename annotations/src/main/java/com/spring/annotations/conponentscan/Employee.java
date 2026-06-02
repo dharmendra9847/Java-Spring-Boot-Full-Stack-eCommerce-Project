@@ -1,12 +1,21 @@
 package com.spring.annotations.conponentscan;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 @Component("employee")
 public class Employee {
+
+    @Value("1")
     private int employeeId;
+
+    @Value("John")
     private String employeeName;
+
+    @Value("john.doe@gmail.com")
     private String employeeEmailAddress;
+
+    @Value("50000")
     private double salary;
 
     public int getEmployeeId() {
@@ -41,8 +50,7 @@ public class Employee {
         this.salary = salary;
     }
 
-    @Override
-    public String toString() {
+    public String displayEmployeeDetails() {
         return "-----------------------------------\n" +
                 "Employee Details:\n" +
                 "-----------------------------------\n" +
