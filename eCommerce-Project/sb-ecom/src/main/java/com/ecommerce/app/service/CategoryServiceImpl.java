@@ -39,12 +39,16 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public String deleteCategory(Long categoryId) {
-        List<Category> categories = categoryRepository.findAll();
 
-        Category category = categories.stream()
-                .filter(c -> c.getCategoryId().equals(categoryId))
-                .findFirst()
+        Category category = categoryRepository.findById(categoryId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource Not Found"));
+
+//        List<Category> categories = categoryRepository.findAll();
+//
+//        Category category = categories.stream()
+//                .filter(c -> c.getCategoryId().equals(categoryId))
+//                .findFirst()
+//                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Resource Not Found"));
 
         //categories.remove(category);
         categoryRepository.delete(category);
@@ -53,22 +57,33 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(Category category, Long categoryId) {
-        List<Category> categories = categoryRepository.findAll();
 
-        Optional<Category> categoryOptional = categories.stream()
-                .filter(c -> c.getCategoryId().equals(categoryId))
-                .findFirst();
+        Optional<Category> savedCategoryOptional = categoryRepository.findById(categoryId);
 
-        if (categoryOptional.isPresent()) {
-            Category existingCategory = categoryOptional.get();
-            //existingCategory.setCategoryName(category.getCategoryName());
-            //return existingCategory;
-            existingCategory.setCategoryName(category.getCategoryName());
+        Category savedCategory = savedCategoryOptional.orElseThrow(() ->
+                new ResponseStatusException(HttpStatus.NOT_FOUND, "Category Not Found"));
 
-            Category savedCategory = categoryRepository.save(existingCategory);
-            return savedCategory;
-        } else {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category Not Found");
-        }
+        category.setCategoryId(categoryId);
+        categoryRepository.save(category);
+        return savedCategory;
+
+
+//        List<Category> categories = categoryRepository.findAll();
+//
+//        Optional<Category> categoryOptional = categories.stream()
+//                .filter(c -> c.getCategoryId().equals(categoryId))
+//                .findFirst();
+//
+//        if (categoryOptional.isPresent()) {
+//            Category existingCategory = categoryOptional.get();
+//            //existingCategory.setCategoryName(category.getCategoryName());
+//            //return existingCategory;
+//            existingCategory.setCategoryName(category.getCategoryName());
+//
+//            Category savedCategory = categoryRepository.save(existingCategory);
+//            return savedCategory;
+//        } else {
+//            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Category Not Found");
+//        }
     }
 }
