@@ -8,7 +8,7 @@
         <version>4.0.6</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.ecommerce.app</groupId>
+    <groupId>com.ecommerce.project</groupId>
     <artifactId>sb-ecom</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>sb-ecom</name>
@@ -69,6 +69,12 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.modelmapper</groupId>
+            <artifactId>modelmapper</artifactId>
+            <version>3.2.4</version>
         </dependency>
 
     </dependencies>
