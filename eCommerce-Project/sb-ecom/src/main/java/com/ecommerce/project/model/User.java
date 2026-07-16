@@ -38,7 +38,7 @@ public class User {
     private String email;
 
     @NotBlank
-    @Size(max = 10)
+    @Column(nullable = false, length = 255)
     private String password;
 
     @Getter
@@ -63,4 +63,9 @@ public class User {
     orphanRemoval = true)
     private Set<Product> products = new HashSet<>();
 
+    public User(String userName, String email, String password) {
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+    }
 }
